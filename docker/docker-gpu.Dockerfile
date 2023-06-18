@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.12.0-gpu-py3
+FROM tensorflow/tensorflow:1.15.5-gpu-py3
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 RUN add-apt-repository -y ppa:git-core/ppa
