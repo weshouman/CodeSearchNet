@@ -22,6 +22,11 @@ if __name__ == '__main__':
     os.chdir(destination_dir)
 
     for language in ('python', 'javascript', 'java', 'ruby', 'php', 'go'):
-        call(['wget', 'https://zenodo.org/record/7857872/files/{}.zip'.format(language), '-P', destination_dir, '-O', '{}.zip'.format(language)])
-        call(['unzip', '{}.zip'.format(language)])
-        call(['rm', '{}.zip'.format(language)])
+        lang_dir = os.path.join(destination_dir, language)
+        if os.path.exists(lang_dir):
+            print(f"{lang_dir} was found, skipping downloading {language}.zip")
+        else:
+            call(['wget', 'https://zenodo.org/record/7857872/files/{}.zip'.format(language), '-P', destination_dir, '-O', '{}.zip'.format(language)])
+            call(['unzip', '{}.zip'.format(language)])
+            call(['rm', '{}.zip'.format(language)])
+
