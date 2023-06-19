@@ -3,6 +3,10 @@
 set -e
 
 cd /home/dev/script/
-rm -rf ../resources/data
+
+if [ $clean_dataset -eq "true" ]
+then
+  rm -rf ../resources/data
+fi
 
 python download_dataset.py ../resources/data
