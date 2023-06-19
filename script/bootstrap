@@ -10,6 +10,6 @@ if docker build -f docker/docker-gpu.Dockerfile -t csnet:gpu . 2>/dev/null; then
     echo "built image csnet:gpu locally."
 else
     echo "local build failed, pulling image from DockerHub instead"
-    docker pull github/csnet:gpu
-    docker tag github/csnet:gpu csnet:gpu
+    docker pull github/csnet:cpu
+    docker tag github/csnet:cpu csnet:cpu
 fi
