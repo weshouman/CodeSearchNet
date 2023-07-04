@@ -37,6 +37,28 @@
 
 <!-- /TOC -->
 
+# Env Setup
+## Nvidia Docker
+to install nvidia-docker, the steps are no more included on [this link](https://nvidia.github.io/nvidia-docker/)
+The following steps were tested on archlinux
+```
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+
+# The following line works only till 22.04
+#distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+# a current work around is to use 22.04 packages, (worked with 22.10)
+distribution=22.04
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+
+sudo systemctl restart docker
+
+# verify using
+docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+```
+
 # Quickstart
 
 **If this is your first time reading this, we recommend skipping this section and reading the following sections.** The below commands assume you have [Docker](https://docs.docker.com/get-started/) and [Nvidia-Docker](https://github.com/NVIDIA/nvidia-docker), as well as a GPU that supports [CUDA 9.0](https://developer.nvidia.com/cuda-90-download-archive) or greater. Note: you should only have to run `script/setup` once to download the data.
